@@ -142,7 +142,7 @@ import numpy as np
 def simulate_burner(porosity_SiC3, porosity_SiC10, preheating_length):
     # Validate input parameters
     if not (0.7 <= porosity_SiC3 <= 0.9) or not (0.7 <= porosity_SiC10 <= 0.9):
-        print(f"Invalid porosity values: {porosity_SiC3}, {porosity_SiC10}")
+        print(f"Invalid porosity values: {porosity_SiC3, porosity_SiC10}")
         return -1e6, 1e6  # Assign bad fitness
 
     if not (0.01 <= preheating_length <= 0.05):
@@ -257,6 +257,9 @@ class PMReactor(ct.ExtensibleIdealGasConstPressureReactor):
 
     def after_update_state(self, y):
         self.Ts = y[self.index_Ts]
+        if self.Ts <= 0:
+            print("Warning: Ts is non-positive, clamping to 1e-6 K")
+            self.Ts = 1e-6
 
     # heat transfer coefficient (htc) based on a Nusselt (Nu) correlation
     def htc(self):
@@ -271,6 +274,15 @@ class PMReactor(ct.ExtensibleIdealGasConstPressureReactor):
 
     # implement the new governing equations
     def replace_eval(self, t, LHS, RHS):
+        # New: Clamp gas-phase temperature to avoid nonpositive values
+        gas_T = self.thermo.T
+        if gas_T <= 0:
+            print("Warning: Gas temperature is non-positive, clamping to 1e-6 K")
+            gas_T = 1e-6
+
+        if self.Ts <= 0:
+            print("Warning: Solid temperature Ts is ≤0; clamping to 1e-6 K")
+            self.Ts = 1e-6
 
         for i in range(self.n_vars):
             LHS[i] = 1.0
@@ -320,14 +332,14 @@ class PMReactor(ct.ExtensibleIdealGasConstPressureReactor):
         # ============================================================================#
         #                             species mass fractions                          #
         # ============================================================================#
-        wdot = self.kinetics.net_production_rates  # chemical source terms
+        # Process reaction rates robustly: clamp any nonfinite values to 0.
+        wdot = self.kinetics.net_production_rates
         if np.iscomplexobj(wdot):
-            wdot = np.real(wdot)  # convert complex to real values
+            wdot = np.real(wdot)
         if not self.chemistry:
             wdot *= 0.0
-        if not np.all(np.isfinite(wdot)):
-            print("Warning: non-finite values detected in wdot. Resetting to zero.")
-            wdot = np.zeros_like(wdot)
+        wdot = np.nan_to_num(wdot, nan=0.0, posinf=0.0, neginf=0.0)
+
         # right hand side of the mass fraction equations
         for k in range(self.thermo.n_species):
             index = k + self.species_offset
@@ -350,7 +362,7 @@ class PMReactor(ct.ExtensibleIdealGasConstPressureReactor):
         Tindex = self.component_index("temperature")
         LHS[Tindex] = porosity * density * cp * self.V
         # heat transfer between solid and gas-phase
-        RHS[Tindex] -= self.htc() * (self.thermo.T - self.Ts) * self.V
+        RHS[Tindex] -= self.htc() * (gas_T - self.Ts) * self.V
         # convective transport
         RHS[Tindex] += self.A * mdot * (h_in - enthalpy_loss)
         # chemical contribution
