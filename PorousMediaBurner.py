@@ -259,10 +259,9 @@ class PMReactor(ct.ExtensibleIdealGasConstPressureReactor):
         return 16.0 * ct.stefan_boltzmann * Ts_safe**3 / (3.0 * extinctionCoef)
 
     def after_update_state(self, y):
-        self.Ts = y[self.index_Ts]
-        if self.Ts <= 0:
-            print("Warning: Ts is non-positive, clamping to 1e-6 K")
-            self.Ts = 1e-6
+        self.Ts = np.clip(y[self.index_Ts], 1e-6, None)
+        if self.Ts < 1e-6:
+            print("Warning: Ts clamped to 1e-6 K")
 
     # heat transfer coefficient (htc) based on a Nusselt (Nu) correlation
     def htc(self):
@@ -277,62 +276,59 @@ class PMReactor(ct.ExtensibleIdealGasConstPressureReactor):
 
     # implement the new governing equations
     def replace_eval(self, t, LHS, RHS):
-        # Clamp gas-phase and solid temperatures 
-        gas_T = self.thermo.T
-        if gas_T <= 0:
-            print("Warning: Gas temperature is non-positive, clamping to 1e-6 K")
-            gas_T = 1e-6
-        self.Ts = max(self.Ts, 1e-6)
+        # Ensure gas temperature is always positive
+        gas_T = np.clip(self.thermo.T, 1e-6, None)
+        if gas_T < 1e-6:
+            print("Warning: Gas temperature clamped to 1e-6 K")
+        self.Ts = np.clip(self.Ts, 1e-6, None)
 
         for i in range(self.n_vars):
             LHS[i] = 1.0
             RHS[i] = 0.0
 
-        # update solid properties with current values of the solid temperature
+        # update solid properties with current solid temperature
         self.solid.solid_phase.TP = self.Ts, constantP
 
-        # create some variables for convenience
+        # Create variables for convenience
         Y = self.thermo.Y
         density = self.thermo.density_mass
         cp = self.thermo.cp_mass
+
+        # Additional safety checks:
+        if density <= 0 or not np.isfinite(density):
+            print(f"Warning: gas density ({density}) nonpositive; clamping to 1e-12")
+            density = 1e-12
+        if cp <= 0 or not np.isfinite(cp):
+            print(f"Warning: gas cp ({cp}) nonpositive; clamping to 1e-12")
+            cp = 1e-12
+            
         porosity = self.solid.porosity
         solid_density = self.solid.solid_phase.density
         solid_cp = self.solid.solid_phase.cp
+        # Log current temperatures
+        print(f"[DEBUG] Gas T = {gas_T}, Solid T = {self.Ts}")
 
-        # If this reactor has no left neighbor, it is the first reactor in the cascade.
-        # In this case, set initial mass fractions and enthalpies as inlet conditions
+        # Determine inlet conditions
         if self.neighbor_left is None:
             Y_in = Y_in_inlet
             h_in = h_in_inlet
-        else:  # otherwise, take the mass fraction and enthalpy from the left neighbor
+        else:
             Y_in = self.neighbor_left.thermo.Y
             h_in = self.neighbor_left.thermo.enthalpy_mass
 
-        # ============================================================================#
-        #                          Temperature of the solid                           #
-        # ============================================================================#
-
+        # -----------------------------
+        # Solid temperature balance
         LHS[self.index_Ts] = (1.0 - porosity) * solid_cp * solid_density * self.V
-
-        # heat transfer between gas and solid
         RHS[self.index_Ts] += self.htc() * (self.thermo.T - self.Ts) * self.V
-
-        # compute the axial heat loss due to radiation to the ambience
-        # if this is the first or last reactor in the cascade
         if self.neighbor_left is None or self.neighbor_right is None:
-            RHS[self.index_Ts] -= ct.stefan_boltzmann * self.solid.emissivity \
-                * (self.Ts**4 - Tamb**4) * self.A
-
-        # compute heat flux in the solid between the reactors in the cascade
+            RHS[self.index_Ts] -= ct.stefan_boltzmann * self.solid.emissivity * (self.Ts**4 - Tamb**4) * self.A
         if self.neighbor_left is not None:
             RHS[self.index_Ts] -= heat_flux(self.neighbor_left, self) * self.A
         if self.neighbor_right is not None:
             RHS[self.index_Ts] += heat_flux(self, self.neighbor_right) * self.A
 
-        # ============================================================================#
-        #                             species mass fractions                          #
-        # ============================================================================#
-        # Process reaction rates robustly
+        # -----------------------------
+        # Species mass fraction equations
         wdot = self.kinetics.net_production_rates
         if np.iscomplexobj(wdot):
             wdot = np.real(wdot)
@@ -340,25 +336,17 @@ class PMReactor(ct.ExtensibleIdealGasConstPressureReactor):
             wdot *= 0.0
         wdot = np.nan_to_num(wdot, nan=0.0, posinf=0.0, neginf=0.0)
         wdot = np.real_if_close(wdot)
-
-        # right hand side of the mass fraction equations
         for k in range(self.thermo.n_species):
             index = k + self.species_offset
-            # chemical source term
             RHS[index] += wdot[k] * self.molecular_weights[k] / density
-            # convective contribution
-            RHS[index] += self.A * mdot / \
-                (self.V * porosity * density) * (Y_in[k] - Y[k])
+            RHS[index] += self.A * mdot / (self.V * porosity * density) * (Y_in[k] - Y[k])
 
-        # ============================================================================#
-        #                             Temperature of the gas                          #
-        # ============================================================================#
-
-        # right hand side of the gas phase temperature equation
-        enthalpy_loss = np.dot(self.thermo.partial_molar_enthalpies
-                               / self.molecular_weights, Y_in)
-
-        hrr = -np.dot(self.thermo.partial_molar_enthalpies, wdot)  # (W/m^3)
+        # -----------------------------
+        # Gas temperature equation
+        enthalpy_loss = np.dot(self.thermo.partial_molar_enthalpies / self.molecular_weights, Y_in)
+        hrr = -np.dot(self.thermo.partial_molar_enthalpies, wdot)
+        # Log diagnostic quantities:
+        print(f"[DEBUG] enthalpy_loss = {enthalpy_loss}, hrr = {hrr}")
 
         Tindex = self.component_index("temperature")
         LHS[Tindex] = porosity * density * cp * self.V
@@ -366,14 +354,14 @@ class PMReactor(ct.ExtensibleIdealGasConstPressureReactor):
         RHS[Tindex] += self.A * mdot * (h_in - enthalpy_loss)
         RHS[Tindex] += hrr * self.V * porosity
 
-        # Final check: force all computed arrays to be real
-        RHS[:] = np.real_if_close(RHS)
-        LHS[:] = np.real_if_close(LHS)
+        # Final check: force arrays to be real and finite
+        RHS[:] = np.clip(np.real_if_close(RHS), -1e12, 1e12)
+        LHS[:] = np.clip(np.real_if_close(LHS), -1e12, 1e12)
         if not np.all(np.isfinite(RHS)):
-            print("Warning: Detected non-finite entries in RHS, clamping them.")
+            print("Warning: Detected non-finite entries in RHS; clamping.")
             RHS[:] = np.nan_to_num(RHS, nan=0.0, posinf=1e12, neginf=-1e12)
         if not np.all(np.isfinite(LHS)):
-            print("Warning: Detected non-finite entries in LHS, clamping them.")
+            print("Warning: Detected non-finite entries in LHS; clamping.")
             LHS[:] = np.nan_to_num(LHS, nan=1e12, posinf=1e12, neginf=-1e12)
 
 # list of reactors that form the cascade
