@@ -1,0 +1,864 @@
+[ERROR][rank 0][/Users/runner/work/_temp/sundials-7.1.1/src/cvodes/cvodes.c:8028][cvHandleFailure] At t = 3293.83 and h = 3.80663e-06, the error test failed repeatedly or with |h| = hmin.
+[ERROR][rank 0][/Users/runner/work/_temp/sundials-7.1.1/src/cvodes/cvodes.c:8028][cvHandleFailure] At t = 6378.23 and h = 2.05468e-05, the error test failed repeatedly or with |h| = hmin.
+[ERROR][rank 0][/Users/runner/work/_temp/sundials-7.1.1/src/cvodes/cvodes.c:8032][cvHandleFailure] At t = 8270.6 and h = 0.0175335, the corrector convergence test failed repeatedly or with |h| = hmin.
+[ERROR][rank 0][/Users/runner/work/_temp/sundials-7.1.1/src/cvodes/cvodes.c:8028][cvHandleFailure] At t = 10091.6 and h = 1.26978e-05, the error test failed repeatedly or with |h| = hmin.
+[ERROR][rank 0][/Users/runner/work/_temp/sundials-7.1.1/src/cvodes/cvodes.c:8028][cvHandleFailure] At t = 11182.9 and h = 8.59328e-06, the error test failed repeatedly or with |h| = hmin.
+[ERROR][rank 0][/Users/runner/work/_temp/sundials-7.1.1/src/cvodes/cvodes.c:8032][cvHandleFailure] At t = 116428 and h = 3.46099, the corrector convergence test failed repeatedly or with |h| = hmin.
+[ERROR][rank 0][/Users/runner/work/_temp/sundials-7.1.1/src/cvodes/cvodes.c:8032][cvHandleFailure] At t = 8.78905e+07 and h = 0.301339, the corrector convergence test failed repeatedly or with |h| = hmin.
+[ERROR][rank 0][/Users/runner/work/_temp/sundials-7.1.1/src/cvodes/cvodes.c:8028][cvHandleFailure] At t = 8.7891e+07 and h = 7.69489e-06, the error test failed repeatedly or with |h| = hmin.
+[ERROR][rank 0][/Users/runner/work/_temp/sundials-7.1.1/src/cvodes/cvodes.c:8032][cvHandleFailure] At t = 8.82212e+07 and h = 0.112192, the corrector convergence test failed repeatedly or with |h| = hmin.
+Simulation error: 
+*******************************************************************************
+CanteraError thrown by CVodesIntegrator::step:
+CVodes error encountered. Error code: -3
+
+cvHandleFailure: At t = 3293.83 and h = 3.80663e-06, the error test failed repeatedly or with |h| = hmin.
+Components with largest weighted error estimates:
+183: 27385.820017658574
+182: -4574.089632030921
+187: -4006.6877902356114
+180: -3461.1409654232734
+186: -2917.38363137538
+178: -2669.614240973144
+179: -2220.744019234178
+192: -1980.1017358743923
+188: -1964.8068903053666
+181: -1452.5880335853262
+*******************************************************************************
+
+Simulation error: 
+*******************************************************************************
+CanteraError thrown by CVodesIntegrator::step:
+CVodes error encountered. Error code: -3
+
+cvHandleFailure: At t = 6378.23 and h = 2.05468e-05, the error test failed repeatedly or with |h| = hmin.
+Components with largest weighted error estimates:
+183: -1220432.271127894
+173: -44530.6719724201
+182: 44526.2328860011
+187: 41176.44978711898
+180: 34608.20004924053
+186: 30720.299089437456
+192: 30439.51734448069
+178: 29033.652880763653
+239: -26485.00552794623
+210: 24977.671934880946
+*******************************************************************************
+
+Simulation error: 
+*******************************************************************************
+CanteraError thrown by CVodesIntegrator::step:
+CVodes error encountered. Error code: -4
+
+cvHandleFailure: At t = 8270.6 and h = 0.0175335, the corrector convergence test failed repeatedly or with |h| = hmin.
+Components with largest weighted error estimates:
+183: -101705.6788315772
+182: -90095.35779028879
+266: -89666.52548182275
+187: -84588.2030585527
+192: -81044.8595992789
+210: -71727.36318194402
+178: -70798.18690385466
+186: -61928.59655769681
+180: -60018.23389708779
+205: 59023.63780056205
+*******************************************************************************
+
+Simulation error: 
+*******************************************************************************
+CanteraError thrown by CVodesIntegrator::step:
+CVodes error encountered. Error code: -3
+
+cvHandleFailure: At t = 10091.6 and h = 1.26978e-05, the error test failed repeatedly or with |h| = hmin.
+Components with largest weighted error estimates:
+183: 701247.3947456538
+182: -40622.283928257595
+187: -37249.77585669411
+180: -31611.57272552772
+186: -27585.60061766901
+178: -26030.771065013734
+192: -25276.97583606687
+173: 23778.316834272886
+179: -20687.68208182508
+210: -18368.748162504387
+*******************************************************************************
+
+Simulation error: 
+*******************************************************************************
+CanteraError thrown by CVodesIntegrator::step:
+CVodes error encountered. Error code: -3
+
+cvHandleFailure: At t = 11182.9 and h = 8.59328e-06, the error test failed repeatedly or with |h| = hmin.
+Components with largest weighted error estimates:
+183: -360165.577308589
+182: 30606.06002445568
+187: 27832.09558214823
+180: 23814.204245228055
+186: 20643.807706556516
+192: 19405.702229120852
+178: 19271.80587783746
+179: 15599.054090292973
+188: 13642.464596940321
+173: -11781.736567701644
+*******************************************************************************
+
+Simulation error: 
+*******************************************************************************
+CanteraError thrown by CVodesIntegrator::step:
+CVodes error encountered. Error code: -4
+
+cvHandleFailure: At t = 116428 and h = 3.46099, the corrector convergence test failed repeatedly or with |h| = hmin.
+Components with largest weighted error estimates:
+371: 47838.18248599149
+183: -40141.012519703676
+266: -36280.232016261696
+182: -34885.990502350214
+192: -34039.795908314176
+187: -32384.19623880337
+210: -29051.12242632917
+178: -26649.830880552963
+205: 25351.11436543945
+339: -24377.939596680037
+*******************************************************************************
+
+Simulation error: 
+*******************************************************************************
+CanteraError thrown by CVodesIntegrator::step:
+CVodes error encountered. Error code: -4
+Exceptions caught during RHS evaluation:
+
+*******************************************************************************
+Exception thrown by Python callback function:
+TypeError: must be real number, not complex
+*******************************************************************************
+
+
+*******************************************************************************
+CanteraError thrown by Phase::setTemperature:
+temperature must be positive. T = -168226.02650736686
+*******************************************************************************
+
+
+*******************************************************************************
+CanteraError thrown by Phase::setTemperature:
+temperature must be positive. T = -40252.095624380825
+*******************************************************************************
+
+
+*******************************************************************************
+CanteraError thrown by Phase::setTemperature:
+temperature must be positive. T = -8258.612903634317
+*******************************************************************************
+
+
+*******************************************************************************
+CanteraError thrown by Phase::setTemperature:
+temperature must be positive. T = -260.2422234476903
+*******************************************************************************
+
+
+cvHandleFailure: At t = 8.78905e+07 and h = 0.301339, the corrector convergence test failed repeatedly or with |h| = hmin.
+Components with largest weighted error estimates:
+183: 373152475.93868864
+239: 49999172.86355001
+238: 34981168.22366207
+341: -25574309.92446855
+173: 18048959.48143473
+266: 10490808.1961367
+243: 8860679.03197389
+176: 7003074.536661947
+342: -5450220.253238218
+322: 4170259.9765962176
+*******************************************************************************
+
+Simulation error: 
+*******************************************************************************
+CanteraError thrown by CVodesIntegrator::step:
+CVodes error encountered. Error code: -3
+Exceptions caught during RHS evaluation:
+
+*******************************************************************************
+Exception thrown by Python callback function:
+TypeError: must be real number, not complex
+*******************************************************************************
+
+
+*******************************************************************************
+CanteraError thrown by Phase::setTemperature:
+temperature must be positive. T = -168226.02650736686
+*******************************************************************************
+
+
+*******************************************************************************
+CanteraError thrown by Phase::setTemperature:
+temperature must be positive. T = -40252.095624380825
+*******************************************************************************
+
+
+*******************************************************************************
+CanteraError thrown by Phase::setTemperature:
+temperature must be positive. T = -8258.612903634317
+*******************************************************************************
+
+
+*******************************************************************************
+CanteraError thrown by Phase::setTemperature:
+temperature must be positive. T = -260.2422234476903
+*******************************************************************************
+
+
+cvHandleFailure: At t = 8.7891e+07 and h = 7.69489e-06, the error test failed repeatedly or with |h| = hmin.
+Components with largest weighted error estimates:
+183: 48060.0398556577
+182: -4587.017641556905
+187: -4165.972485944565
+180: -3585.171348803096
+186: -3110.61178631738
+192: -2942.6515679298577
+178: -2898.7484233357477
+179: -2364.827528197791
+188: -2075.23683770874
+173: 1598.5153818427655
+*******************************************************************************
+
+Simulation error: 
+*******************************************************************************
+CanteraError thrown by CVodesIntegrator::step:
+CVodes error encountered. Error code: -4
+Exceptions caught during RHS evaluation:
+
+*******************************************************************************
+Exception thrown by Python callback function:
+TypeError: must be real number, not complex
+*******************************************************************************
+
+
+*******************************************************************************
+CanteraError thrown by Phase::setTemperature:
+temperature must be positive. T = -168226.02650736686
+*******************************************************************************
+
+
+*******************************************************************************
+CanteraError thrown by Phase::setTemperature:
+temperature must be positive. T = -40252.095624380825
+*******************************************************************************
+
+
+*******************************************************************************
+CanteraError thrown by Phase::setTemperature:
+temperature must be positive. T = -8258.612903634317
+*******************************************************************************
+
+
+*******************************************************************************
+CanteraError thrown by Phase::setTemperature:
+temperature must be positive. T = -260.2422234476903
+*******************************************************************************
+
+
+cvHandleFailure: At t = 8.82212e+07 and h = 0.112192, the corrector convergence test failed repeatedly or with |h| = hmin.
+Components with largest weighted error estimates:
+183: 41622.31207203462
+266: 37817.350085672326
+182: 36387.1867577235
+192: 34004.41867356658
+187: 33984.39234437026
+210: 28714.981162749646
+178: 28179.766044459342
+186: 24246.023139797435
+180: 23553.83149231881
+205: -22683.792096678473
+*******************************************************************************
+[ERROR][rank 0][/Users/runner/work/_temp/sundials-7.1.1/src/cvodes/cvodes.c:8032][cvHandleFailure] At t = 8.82968e+07 and h = 0.00012548, the corrector convergence test failed repeatedly or with |h| = hmin.
+/Users/rushilmital/Documents/IITD-Acads/BTP/BTP2/src/PorousMediaBurner.py:329: RuntimeWarning: invalid value encountered in multiply
+  wdot *= 0.0
+[ERROR][rank 0][/Users/runner/work/_temp/sundials-7.1.1/src/cvodes/cvodes.c:8028][cvHandleFailure] At t = 8.83009e+07 and h = 1.08959e-07, the error test failed repeatedly or with |h| = hmin.
+/Users/rushilmital/Documents/IITD-Acads/BTP/BTP2/src/PorousMediaBurner.py:309: ComplexWarning: Casting complex values to real discards the imaginary part
+  RHS[self.index_Ts] += self.htc() * (self.thermo.T - self.Ts) * self.V
+/Users/rushilmital/Documents/IITD-Acads/BTP/BTP2/src/PorousMediaBurner.py:353: ComplexWarning: Casting complex values to real discards the imaginary part
+  RHS[Tindex] -= self.htc() * (self.thermo.T - self.Ts) * self.V
+[ERROR][rank 0][/Users/runner/work/_temp/sundials-7.1.1/src/cvodes/cvodes.c:8032][cvHandleFailure] At t = 8.95455e+07 and h = 42.2691, the corrector convergence test failed repeatedly or with |h| = hmin.
+
+Simulation error: 
+*******************************************************************************
+CanteraError thrown by CVodesIntegrator::step:
+CVodes error encountered. Error code: -4
+Exceptions caught during RHS evaluation:
+
+*******************************************************************************
+Exception thrown by Python callback function:
+TypeError: must be real number, not complex
+*******************************************************************************
+
+
+*******************************************************************************
+CanteraError thrown by Phase::setTemperature:
+temperature must be positive. T = -168226.02650736686
+*******************************************************************************
+
+
+*******************************************************************************
+CanteraError thrown by Phase::setTemperature:
+temperature must be positive. T = -40252.095624380825
+*******************************************************************************
+
+
+*******************************************************************************
+CanteraError thrown by Phase::setTemperature:
+temperature must be positive. T = -8258.612903634317
+*******************************************************************************
+
+
+*******************************************************************************
+CanteraError thrown by Phase::setTemperature:
+temperature must be positive. T = -260.2422234476903
+*******************************************************************************
+
+
+*******************************************************************************
+CanteraError thrown by Phase::setTemperature:
+temperature must be positive. T = -25016.20342118846
+*******************************************************************************
+
+
+*******************************************************************************
+CanteraError thrown by Phase::setTemperature:
+temperature must be positive. T = -4456.788535962523
+*******************************************************************************
+
+
+cvHandleFailure: At t = 8.82968e+07 and h = 0.00012548, the corrector convergence test failed repeatedly or with |h| = hmin.
+Components with largest weighted error estimates:
+183: -5116357.802818701
+173: -220496.22255956908
+239: -150636.92920998362
+238: -128990.45180479248
+243: -36862.99700849195
+182: 32357.851225170918
+187: 30623.801389270702
+210: 25978.077429342113
+180: 24632.634841258052
+186: 24319.810945848832
+*******************************************************************************
+
+Simulation error: 
+*******************************************************************************
+CanteraError thrown by CVodesIntegrator::step:
+CVodes error encountered. Error code: -3
+Exceptions caught during RHS evaluation:
+
+*******************************************************************************
+Exception thrown by Python callback function:
+TypeError: must be real number, not complex
+*******************************************************************************
+
+
+*******************************************************************************
+CanteraError thrown by Phase::setTemperature:
+temperature must be positive. T = -168226.02650736686
+*******************************************************************************
+
+
+*******************************************************************************
+CanteraError thrown by Phase::setTemperature:
+temperature must be positive. T = -40252.095624380825
+*******************************************************************************
+
+
+*******************************************************************************
+CanteraError thrown by Phase::setTemperature:
+temperature must be positive. T = -8258.612903634317
+*******************************************************************************
+
+
+*******************************************************************************
+CanteraError thrown by Phase::setTemperature:
+temperature must be positive. T = -260.2422234476903
+*******************************************************************************
+
+
+*******************************************************************************
+CanteraError thrown by Phase::setTemperature:
+temperature must be positive. T = -25016.20342118846
+*******************************************************************************
+
+
+*******************************************************************************
+CanteraError thrown by Phase::setTemperature:
+temperature must be positive. T = -4456.788535962523
+*******************************************************************************
+
+
+*******************************************************************************
+CanteraError thrown by Phase::setTemperature:
+temperature must be positive. T = -70413.02923093754
+*******************************************************************************
+
+
+*******************************************************************************
+CanteraError thrown by checkFinite:
+ydot contains non-finite elements:
+
+ydot[1] = -nan
+ydot[2] = nan
+ydot[3] = nan
+ydot[4] = nan
+ydot[5] = nan
+ydot[6] = nan
+ydot[7] = nan
+ydot[8] = nan
+ydot[9] = nan
+ydot[10] = nan
+ydot[11] = nan
+ydot[12] = nan
+ydot[13] = nan
+ydot[14] = nan
+ydot[15] = nan
+ydot[16] = nan
+ydot[17] = nan
+ydot[18] = nan
+ydot[19] = nan
+ydot[20] = nan
+ydot[21] = nan
+ydot[22] = nan
+ydot[23] = nan
+ydot[24] = nan
+ydot[25] = nan
+ydot[26] = nan
+ydot[27] = nan
+ydot[28] = nan
+ydot[29] = nan
+ydot[30] = nan
+ydot[31] = nan
+ydot[32] = nan
+ydot[33] = nan
+ydot[34] = nan
+ydot[36] = nan
+ydot[37] = nan
+ydot[38] = nan
+ydot[39] = nan
+ydot[40] = nan
+ydot[41] = nan
+ydot[42] = nan
+ydot[43] = nan
+ydot[44] = nan
+ydot[45] = nan
+ydot[46] = nan
+ydot[47] = nan
+ydot[48] = nan
+ydot[49] = nan
+ydot[51] = nan
+ydot[52] = nan
+ydot[53] = nan
+*******************************************************************************
+
+
+cvHandleFailure: At t = 8.83009e+07 and h = 1.08959e-07, the error test failed repeatedly or with |h| = hmin.
+Components with largest weighted error estimates:
+183: 518.2760584710156
+182: -472.0237765432282
+180: -165.76628668490474
+188: -127.28596195372987
+187: -125.132717906729
+181: -121.1441509622976
+179: -80.99679499789714
+186: -77.6379522025818
+176: -35.31557029890382
+194: -24.959637160234795
+*******************************************************************************
+
+Simulation error: 
+*******************************************************************************
+CanteraError thrown by CVodesIntegrator::step:
+CVodes error encountered. Error code: -4
+Exceptions caught during RHS evaluation:
+
+*******************************************************************************
+Exception thrown by Python callback function:
+TypeError: must be real number, not complex
+*******************************************************************************
+
+
+*******************************************************************************
+CanteraError thrown by Phase::setTemperature:
+temperature must be positive. T = -168226.02650736686
+*******************************************************************************
+
+
+*******************************************************************************
+CanteraError thrown by Phase::setTemperature:
+temperature must be positive. T = -40252.095624380825
+*******************************************************************************
+
+
+*******************************************************************************
+CanteraError thrown by Phase::setTemperature:
+temperature must be positive. T = -8258.612903634317
+*******************************************************************************
+
+
+*******************************************************************************
+CanteraError thrown by Phase::setTemperature:
+temperature must be positive. T = -260.2422234476903
+*******************************************************************************
+
+
+*******************************************************************************
+CanteraError thrown by Phase::setTemperature:
+temperature must be positive. T = -25016.20342118846
+*******************************************************************************
+
+
+*******************************************************************************
+CanteraError thrown by Phase::setTemperature:
+temperature must be positive. T = -4456.788535962523
+*******************************************************************************
+
+
+*******************************************************************************
+CanteraError thrown by Phase::setTemperature:
+temperature must be positive. T = -70413.02923093754
+*******************************************************************************
+
+
+*******************************************************************************
+CanteraError thrown by checkFinite:
+ydot contains non-finite elements:
+
+ydot[1] = -nan
+ydot[2] = nan
+ydot[3] = nan
+ydot[4] = nan
+ydot[5] = nan
+ydot[6] = nan
+ydot[7] = nan
+ydot[8] = nan
+ydot[9] = nan
+ydot[10] = nan
+ydot[11] = nan
+ydot[12] = nan
+ydot[13] = nan
+ydot[14] = nan
+ydot[15] = nan
+ydot[16] = nan
+ydot[17] = nan
+ydot[18] = nan
+ydot[19] = nan
+ydot[20] = nan
+ydot[21] = nan
+ydot[22] = nan
+ydot[23] = nan
+ydot[24] = nan
+ydot[25] = nan
+ydot[26] = nan
+ydot[27] = nan
+ydot[28] = nan
+ydot[29] = nan
+ydot[30] = nan
+ydot[31] = nan
+ydot[32] = nan
+ydot[33] = nan
+ydot[34] = nan
+ydot[36] = nan
+ydot[37] = nan
+ydot[38] = nan
+ydot[39] = nan
+ydot[40] = nan
+ydot[41] = nan
+ydot[42] = nan
+ydot[43] = nan
+ydot[44] = nan
+ydot[45] = nan
+ydot[46] = nan
+ydot[47] = nan
+ydot[48] = nan
+ydot[49] = nan
+ydot[51] = nan
+ydot[52] = nan
+ydot[53] = nan
+*******************************************************************************
+
+
+cvHandleFailure: At t = 8.95455e+07 and h = 42.2691, the corrector convergence test failed repeatedly or with |h| = hmin.
+Components with largest weighted error estimates:
+183: 93370.13628290778
+266: 83305.46996971102
+182: 80012.43243094691
+192: 78098.82562358776
+187: 73591.9938007539
+210: 67532.57166700173
+371: -61510.95634363306
+178: 59389.999618501504
+375: -55598.72666548761
+205: -55327.461460329556
+*******************************************************************************
+[ERROR][rank 0][/Users/runner/work/_temp/sundials-7.1.1/src/cvodes/cvodes.c:8028][cvHandleFailure] At t = 8.95468e+07 and h = 8.11385e-05, the error test failed repeatedly or with |h| = hmin.
+[ERROR][rank 0][/Users/runner/work/_temp/sundials-7.1.1/src/cvodes/cvodes.c:8032][cvHandleFailure] At t = 8.95468e+07 and h = 0.000295486, the corrector convergence test failed repeatedly or with |h| = hmin.
+
+Simulation error: 
+*******************************************************************************
+CanteraError thrown by CVodesIntegrator::step:
+CVodes error encountered. Error code: -3
+Exceptions caught during RHS evaluation:
+
+*******************************************************************************
+Exception thrown by Python callback function:
+TypeError: must be real number, not complex
+*******************************************************************************
+
+
+*******************************************************************************
+CanteraError thrown by Phase::setTemperature:
+temperature must be positive. T = -168226.02650736686
+*******************************************************************************
+
+
+*******************************************************************************
+CanteraError thrown by Phase::setTemperature:
+temperature must be positive. T = -40252.095624380825
+*******************************************************************************
+
+
+*******************************************************************************
+CanteraError thrown by Phase::setTemperature:
+temperature must be positive. T = -8258.612903634317
+*******************************************************************************
+
+
+*******************************************************************************
+CanteraError thrown by Phase::setTemperature:
+temperature must be positive. T = -260.2422234476903
+*******************************************************************************
+
+
+*******************************************************************************
+CanteraError thrown by Phase::setTemperature:
+temperature must be positive. T = -25016.20342118846
+*******************************************************************************
+
+
+*******************************************************************************
+CanteraError thrown by Phase::setTemperature:
+temperature must be positive. T = -4456.788535962523
+*******************************************************************************
+
+
+*******************************************************************************
+CanteraError thrown by Phase::setTemperature:
+temperature must be positive. T = -70413.02923093754
+*******************************************************************************
+
+
+*******************************************************************************
+CanteraError thrown by checkFinite:
+ydot contains non-finite elements:
+
+ydot[1] = -nan
+ydot[2] = nan
+ydot[3] = nan
+ydot[4] = nan
+ydot[5] = nan
+ydot[6] = nan
+ydot[7] = nan
+ydot[8] = nan
+ydot[9] = nan
+ydot[10] = nan
+ydot[11] = nan
+ydot[12] = nan
+ydot[13] = nan
+ydot[14] = nan
+ydot[15] = nan
+ydot[16] = nan
+ydot[17] = nan
+ydot[18] = nan
+ydot[19] = nan
+ydot[20] = nan
+ydot[21] = nan
+ydot[22] = nan
+ydot[23] = nan
+ydot[24] = nan
+ydot[25] = nan
+ydot[26] = nan
+ydot[27] = nan
+ydot[28] = nan
+ydot[29] = nan
+ydot[30] = nan
+ydot[31] = nan
+ydot[32] = nan
+ydot[33] = nan
+ydot[34] = nan
+ydot[36] = nan
+ydot[37] = nan
+ydot[38] = nan
+ydot[39] = nan
+ydot[40] = nan
+ydot[41] = nan
+ydot[42] = nan
+ydot[43] = nan
+ydot[44] = nan
+ydot[45] = nan
+ydot[46] = nan
+ydot[47] = nan
+ydot[48] = nan
+ydot[49] = nan
+ydot[51] = nan
+ydot[52] = nan
+ydot[53] = nan
+*******************************************************************************
+
+
+cvHandleFailure: At t = 8.95468e+07 and h = 8.11385e-05, the error test failed repeatedly or with |h| = hmin.
+Components with largest weighted error estimates:
+342: -2049.3291483789944
+340: -1186.307977534256
+341: -415.3468100798059
+339: 159.21416434866035
+376: 48.9403420830867
+371: -44.36058559507223
+370: 33.49808728619156
+354: 33.29127869059119
+368: 21.05704431678334
+383: -18.510231263599227
+*******************************************************************************
+
+Simulation error: 
+*******************************************************************************
+CanteraError thrown by CVodesIntegrator::step:
+CVodes error encountered. Error code: -4
+Exceptions caught during RHS evaluation:
+
+*******************************************************************************
+Exception thrown by Python callback function:
+TypeError: must be real number, not complex
+*******************************************************************************
+
+
+*******************************************************************************
+CanteraError thrown by Phase::setTemperature:
+temperature must be positive. T = -168226.02650736686
+*******************************************************************************
+
+
+*******************************************************************************
+CanteraError thrown by Phase::setTemperature:
+temperature must be positive. T = -40252.095624380825
+*******************************************************************************
+
+
+*******************************************************************************
+CanteraError thrown by Phase::setTemperature:
+temperature must be positive. T = -8258.612903634317
+*******************************************************************************
+
+
+*******************************************************************************
+CanteraError thrown by Phase::setTemperature:
+temperature must be positive. T = -260.2422234476903
+*******************************************************************************
+
+
+*******************************************************************************
+CanteraError thrown by Phase::setTemperature:
+temperature must be positive. T = -25016.20342118846
+*******************************************************************************
+
+
+*******************************************************************************
+CanteraError thrown by Phase::setTemperature:
+temperature must be positive. T = -4456.788535962523
+*******************************************************************************
+
+
+*******************************************************************************
+CanteraError thrown by Phase::setTemperature:
+temperature must be positive. T = -70413.02923093754
+*******************************************************************************
+
+
+*******************************************************************************
+CanteraError thrown by checkFinite:
+ydot contains non-finite elements:
+
+ydot[1] = -nan
+ydot[2] = nan
+ydot[3] = nan
+ydot[4] = nan
+ydot[5] = nan
+ydot[6] = nan
+ydot[7] = nan
+ydot[8] = nan
+ydot[9] = nan
+ydot[10] = nan
+ydot[11] = nan
+ydot[12] = nan
+ydot[13] = nan
+ydot[14] = nan
+ydot[15] = nan
+ydot[16] = nan
+ydot[17] = nan
+ydot[18] = nan
+ydot[19] = nan
+ydot[20] = nan
+ydot[21] = nan
+ydot[22] = nan
+ydot[23] = nan
+ydot[24] = nan
+ydot[25] = nan
+ydot[26] = nan
+ydot[27] = nan
+ydot[28] = nan
+ydot[29] = nan
+ydot[30] = nan
+ydot[31] = nan
+ydot[32] = nan
+ydot[33] = nan
+ydot[34] = nan
+ydot[36] = nan
+ydot[37] = nan
+ydot[38] = nan
+ydot[39] = nan
+ydot[40] = nan
+ydot[41] = nan
+ydot[42] = nan
+ydot[43] = nan
+ydot[44] = nan
+ydot[45] = nan
+ydot[46] = nan
+ydot[47] = nan
+ydot[48] = nan
+ydot[49] = nan
+ydot[51] = nan
+ydot[52] = nan
+ydot[53] = nan
+*******************************************************************************
+
+
+cvHandleFailure: At t = 8.95468e+07 and h = 0.000295486, the corrector convergence test failed repeatedly or with |h| = hmin.
+Components with largest weighted error estimates:
+183: -91513.61005444583
+182: -85411.44715416628
+187: -81465.73272432742
+210: -69062.11968269502
+192: -67074.23439108001
+178: -66872.67611774815
+186: -66381.95595597233
+180: -63370.227657158
+266: -60834.611423282375
+179: -46110.13011393069
+*******************************************************************************
+
+Optimized Parameters: [0.75501468 0.83928823 0.02280261]
+Optimized Fitness: 1299.1475595115726
+[WARNING][rank 0][/Users/runner/work/_temp/sundials-7.1.1/src/cvodes/cvodes.c:3482][CVode] Internal t = 8.78905e+07 and h = 2.94276e-09 are such that t + h = t on the next step. The solver will continue anyway.
+[WARNING][rank 0][/Users/runner/work/_temp/sundials-7.1.1/src/cvodes/cvodes.c:3482][CVode] Internal t = 8.78905e+07 and h = 2.94276e-09 are such that t + h = t on the next step. The solver will continue anyway.
+[WARNING][rank 0][/Users/runner/work/_temp/sundials-7.1.1/src/cvodes/cvodes.c:3482][CVode] Internal t = 8.78905e+07 and h = 5.36956e-09 are such that t + h = t on the next step. The solver will continue anyway.
+[WARNING][rank 0][/Users/runner/work/_temp/sundials-7.1.1/src/cvodes/cvodes.c:3482][CVode] Internal t = 8.78905e+07 and h = 5.36956e-09 are such that t + h = t on the next step. The solver will continue anyway.
+[WARNING][rank 0][/Users/runner/work/_temp/sundials-7.1.1/src/cvodes/cvodes.c:3482][CVode] Internal t = 8.78905e+07 and h = 5.36956e-09 are such that t + h = t on the next step. The solver will continue anyway.
+[WARNING][rank 0][/Users/runner/work/_temp/sundials-7.1.1/src/cvodes/cvodes.c:3482][CVode] Internal t = 8.78905e+07 and h = 5.36956e-09 are such that t + h = t on the next step. The solver will continue anyway.
+[WARNING][rank 0][/Users/runner/work/_temp/sundials-7.1.1/src/cvodes/cvodes.c:3482][CVode] Internal t = 8.78905e+07 and h = 5.36956e-09 are such that t + h = t on the next step. The solver will continue anyway.
+[WARNING][rank 0][/Users/runner/work/_temp/sundials-7.1.1/src/cvodes/cvodes.c:3482][CVode] Internal t = 8.78905e+07 and h = 5.36956e-09 are such that t + h = t on the next step. The solver will continue anyway.
+[WARNING][rank 0][/Users/runner/work/_temp/sundials-7.1.1/src/cvodes/cvodes.c:3482][CVode] Internal t = 8.78905e+07 and h = 5.36956e-09 are such that t + h = t on the next step. The solver will continue anyway.
+[WARNING][rank 0][/Users/runner/work/_temp/sundials-7.1.1/src/cvodes/cvodes.c:3482][CVode] Internal t = 8.78905e+07 and h = 5.36956e-09 are such that t + h = t on the next step. The solver will continue anyway.
+[WARNING][rank 0][/Users/runner/work/_temp/sundials-7.1.1/src/cvodes/cvodes.c:3487][CVode] The above warning has been issued mxhnil times and will not be issued again for this problem.
+__pycache__ directory deleted.
