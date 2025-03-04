@@ -324,9 +324,11 @@ class PMReactor(ct.ExtensibleIdealGasConstPressureReactor):
         wdot = self.kinetics.net_production_rates # chemical source terms
         if not self.chemistry:
             wdot *= 0.0
-        if np.any(np.isnan(wdot)) or np.any(np.isinf(wdot)):
-            print("Warning: Invalid values detected in reaction rates! Resetting wdot to zero.")
-            wdot[:] = np.clip(wdot, 0, np.inf)
+        if not np.all(np.isfinite(wdot)):
+            print("Warning: non-finite values detected in wdot. Resetting to zero.")
+            wdot = np.zeros_like(wdot)
+        else:
+            wdot *= 0.0
         # right hand side of the mass fraction equations
         for k in range(self.thermo.n_species):
             index = k + self.species_offset
