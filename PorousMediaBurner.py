@@ -129,6 +129,8 @@ class SolidProperties:
 #      Ceramics International, 22(5), pp. 407-414 (1996)
 # Note that in this simple model, 0.84 is the porosity of the SiC foams
 def effectiveConductivitySiC(Ts):  # for silicon carbide
+    # Clamp temperature to avoid negative or zero values
+    Ts = max(Ts, 1e-6)
     return (1 - 0.84) * 1857.0 * Ts**(-0.5332)
 
 # YZA: Thermal conductivity of zirconia–alumina composites, N.P. Bansal, D. Zhu, 
@@ -251,9 +253,10 @@ class PMReactor(ct.ExtensibleIdealGasConstPressureReactor):
 
     # effective conductivity for radiative heat transfer from the Rosseland model
     def radiationConductivity(self):
-        extinctionCoef = (3.0 / (self.solid.pore_diameter)) * \
-            (1.0 - self.solid.porosity)
-        return 16.0 * ct.stefan_boltzmann * self.Ts**3 / (3.0 * extinctionCoef)
+        # Use clamped temperature to avoid complex results
+        Ts_safe = max(self.Ts, 1e-6)
+        extinctionCoef = (3.0 / (self.solid.pore_diameter)) * (1.0 - self.solid.porosity)
+        return 16.0 * ct.stefan_boltzmann * Ts_safe**3 / (3.0 * extinctionCoef)
 
     def after_update_state(self, y):
         self.Ts = y[self.index_Ts]
@@ -274,15 +277,12 @@ class PMReactor(ct.ExtensibleIdealGasConstPressureReactor):
 
     # implement the new governing equations
     def replace_eval(self, t, LHS, RHS):
-        # Clamp gas-phase temperature
+        # Clamp gas-phase and solid temperatures 
         gas_T = self.thermo.T
         if gas_T <= 0:
             print("Warning: Gas temperature is non-positive, clamping to 1e-6 K")
             gas_T = 1e-6
-
-        if self.Ts <= 0:
-            print("Warning: Solid temperature Ts is ≤0; clamping to 1e-6 K")
-            self.Ts = 1e-6
+        self.Ts = max(self.Ts, 1e-6)
 
         for i in range(self.n_vars):
             LHS[i] = 1.0
@@ -339,6 +339,7 @@ class PMReactor(ct.ExtensibleIdealGasConstPressureReactor):
         if not self.chemistry:
             wdot *= 0.0
         wdot = np.nan_to_num(wdot, nan=0.0, posinf=0.0, neginf=0.0)
+        wdot = np.real_if_close(wdot)
 
         # right hand side of the mass fraction equations
         for k in range(self.thermo.n_species):
@@ -365,7 +366,9 @@ class PMReactor(ct.ExtensibleIdealGasConstPressureReactor):
         RHS[Tindex] += self.A * mdot * (h_in - enthalpy_loss)
         RHS[Tindex] += hrr * self.V * porosity
 
-        # Final check: Clamp non-finite values in RHS and LHS
+        # Final check: force all computed arrays to be real
+        RHS[:] = np.real_if_close(RHS)
+        LHS[:] = np.real_if_close(LHS)
         if not np.all(np.isfinite(RHS)):
             print("Warning: Detected non-finite entries in RHS, clamping them.")
             RHS[:] = np.nan_to_num(RHS, nan=0.0, posinf=1e12, neginf=-1e12)
