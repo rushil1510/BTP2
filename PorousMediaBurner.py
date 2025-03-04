@@ -274,7 +274,7 @@ class PMReactor(ct.ExtensibleIdealGasConstPressureReactor):
 
     # implement the new governing equations
     def replace_eval(self, t, LHS, RHS):
-        # New: Clamp gas-phase temperature to avoid nonpositive values
+        # Clamp gas-phase temperature
         gas_T = self.thermo.T
         if gas_T <= 0:
             print("Warning: Gas temperature is non-positive, clamping to 1e-6 K")
@@ -332,7 +332,7 @@ class PMReactor(ct.ExtensibleIdealGasConstPressureReactor):
         # ============================================================================#
         #                             species mass fractions                          #
         # ============================================================================#
-        # Process reaction rates robustly: clamp any nonfinite values to 0.
+        # Process reaction rates robustly
         wdot = self.kinetics.net_production_rates
         if np.iscomplexobj(wdot):
             wdot = np.real(wdot)
@@ -361,21 +361,17 @@ class PMReactor(ct.ExtensibleIdealGasConstPressureReactor):
 
         Tindex = self.component_index("temperature")
         LHS[Tindex] = porosity * density * cp * self.V
-        # heat transfer between solid and gas-phase
         RHS[Tindex] -= self.htc() * (gas_T - self.Ts) * self.V
-        # convective transport
         RHS[Tindex] += self.A * mdot * (h_in - enthalpy_loss)
-        # chemical contribution
         RHS[Tindex] += hrr * self.V * porosity
 
-    def before_component_index(self, name):
-        if name == "Ts":
-            return self.index_Ts
-
-    def before_component_name(self, i):
-        if i == self.index_Ts:
-            return "Ts"
-
+        # Final check: Clamp non-finite values in RHS and LHS
+        if not np.all(np.isfinite(RHS)):
+            print("Warning: Detected non-finite entries in RHS, clamping them.")
+            RHS[:] = np.nan_to_num(RHS, nan=0.0, posinf=1e12, neginf=-1e12)
+        if not np.all(np.isfinite(LHS)):
+            print("Warning: Detected non-finite entries in LHS, clamping them.")
+            LHS[:] = np.nan_to_num(LHS, nan=1e12, posinf=1e12, neginf=-1e12)
 
 # list of reactors that form the cascade
 reactors = []
