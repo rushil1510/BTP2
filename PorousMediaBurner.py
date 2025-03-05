@@ -451,3 +451,12 @@ plt.legend()
 plt.xlabel("x (m)")
 plt.ylabel("T (K)")
 plt.savefig("T.png")
+
+# New block: Compute and plot NOx emissions as a function of reactor midpoint
+Nox = [np.exp(r.thermo.T/1000) for r in reactors]  # simple estimation of NOx
+plt.figure()
+plt.plot(x, Nox, "-o", label="NOx emissions")
+plt.legend()
+plt.xlabel("x (m)")
+plt.ylabel("NOx (arbitrary units)")
+plt.savefig("Nox.png")
