@@ -441,16 +441,16 @@ net.rtol_sensitivity = 0.01
 # simulate the flow through burner until the steady-state
 net.advance_to_steady_state()
 
-x = [r.midpoint for r in reactors]
-T = [r.thermo.T for r in reactors]
-Ts = [r.Ts for r in reactors]
+# x = [r.midpoint for r in reactors]
+# T = [r.thermo.T for r in reactors]
+# Ts = [r.Ts for r in reactors]
 
-plt.plot(x, T, "-o", label="T gas")
-plt.plot(x, Ts, "-o", label="T solid")
-plt.legend()
-plt.xlabel("x (m)")
-plt.ylabel("T (K)")
-plt.savefig("T.png")
+# plt.plot(x, T, "-o", label="T gas")
+# plt.plot(x, Ts, "-o", label="T solid")
+# plt.legend()
+# plt.xlabel("x (m)")
+# plt.ylabel("T (K)")
+# plt.savefig("T.png")
 
 # New block: Compute and plot NOx emissions as a function of reactor midpoint
 # Nox = [np.exp(r.thermo.T/1000) for r in reactors]  # simple estimation of NOx
