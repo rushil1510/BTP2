@@ -461,7 +461,7 @@ plt.xlabel("x (m)")
 plt.ylabel("NOx (arbitrary units)")
 plt.savefig("Nox.png")
 
-NOx= [np.exp(r.thermo.T/1000) for r in reactors]
+NOx= [200*np.exp(r.thermo.T/1000) for r in reactors]
 x1=[r.midpoint for r in reactors]
 T1= [r.thermo.T for r in reactors]
 Ts1=[r.Ts for r in reactors]
