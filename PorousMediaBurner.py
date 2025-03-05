@@ -441,33 +441,33 @@ net.rtol_sensitivity = 0.01
 # simulate the flow through burner until the steady-state
 net.advance_to_steady_state()
 
-# x = [r.midpoint for r in reactors]
-# T = [r.thermo.T for r in reactors]
-# Ts = [r.Ts for r in reactors]
+x = [r.midpoint for r in reactors]
+T = [r.thermo.T for r in reactors]
+Ts = [r.Ts for r in reactors]
 
-# plt.plot(x, T, "-o", label="T gas")
-# plt.plot(x, Ts, "-o", label="T solid")
-# plt.legend()
-# plt.xlabel("x (m)")
-# plt.ylabel("T (K)")
-# plt.savefig("T.png")
-
-# New block: Compute and plot NOx emissions as a function of reactor midpoint
-# Nox = [np.exp(r.thermo.T/1000) for r in reactors]  # simple estimation of NOx
-# plt.figure()
-# plt.plot(x, Nox, "-o", label="NOx emissions")
-# plt.legend()
-# plt.xlabel("x (m)")
-# plt.ylabel("NOx (arbitrary units)")
-# plt.savefig("Nox.png")
-
-NOx= [200*np.exp(r.thermo.T/1000) for r in reactors]
-x1=[r.midpoint for r in reactors]
-T1= [r.thermo.T for r in reactors]
-Ts1=[r.Ts for r in reactors]
-plt.plot(x1,T1,"-o",label="T gas")
-plt.plot(x1,Ts1,"-o",label="T solid")
-plt.plot(x1,NOx,"-o",label="NOx emissions")
+plt.plot(x, T, "-o", label="T gas")
+plt.plot(x, Ts, "-o", label="T solid")
 plt.legend()
 plt.xlabel("x (m)")
-plt.savefig("combined.png")
+plt.ylabel("T (K)")
+plt.savefig("T.png")
+
+# New block: Compute and plot NOx emissions as a function of reactor midpoint
+Nox = [np.exp(r.thermo.T/1000) for r in reactors]  # simple estimation of NOx
+plt.figure()
+plt.plot(x, Nox, "-o", label="NOx emissions")
+plt.legend()
+plt.xlabel("x (m)")
+plt.ylabel("NOx (arbitrary units)")
+plt.savefig("Nox.png")
+
+# NOx= [250*np.exp(r.thermo.T/1000) for r in reactors]
+# x1=[r.midpoint for r in reactors]
+# T1= [r.thermo.T for r in reactors]
+# Ts1=[r.Ts for r in reactors]
+# plt.plot(x1,T1,"-o",label="T gas")
+# plt.plot(x1,Ts1,"-o",label="T solid")
+# plt.plot(x1,NOx,"-o",label="NOx emissions")
+# plt.legend()
+# plt.xlabel("x (m)")
+# plt.savefig("combined.png")
