@@ -1,0 +1,13 @@
+Optimal alpha: 10
+Optimized Parameters:
+  - Porosity SiC3: 0.810744
+  - Porosity SiC10: 0.757807
+  - Preheating Length: 0.028302 m
+Optimized Results:
+  - Fitness: 1921.686128
+  - Temperature: -1000000.00 K
+  - NOx Emissions: 1000000.00 units
+
+NOx Model Parameters:
+  - c1: 6.081783
+  - c2: 5000.0
