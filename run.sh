@@ -7,7 +7,7 @@
 start_time=$(date +%s)
 
 # Execute the Python script and log output
-python3 optimize_burner.py &> log.txt
+python3 optimize_burner.py |grep "Optimized"&> log.txt
 
 # Record the end time
 end_time=$(date +%s)
